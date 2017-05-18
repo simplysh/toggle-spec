@@ -1,6 +1,6 @@
 # Toggle Spec
 
-Jump to the spec/source counter-part of the current file.
+Jump to the spec/source complement of the current file.
 
 ![](example/run.gif)
 

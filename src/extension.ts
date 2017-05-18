@@ -1,14 +1,17 @@
-'use strict';
-
 import * as vscode from 'vscode';
 import toggleSpec from './toggle-spec';
+import Finder from './Finder';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-    let disposable = vscode.commands.registerCommand('extension.toggleSpec', toggleSpec.bind(this, vscode));
+    const finder = new Finder();
 
-    context.subscriptions.push(disposable);
+    const trigger = vscode.commands.registerCommand('extension.toggleSpec', () => {
+        toggleSpec(finder.getPaths(), finder.promote.bind(finder));
+    });
+
+    context.subscriptions.push(finder, trigger);
 }
 
 // this method is called when your extension is deactivated
