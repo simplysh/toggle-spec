@@ -5,7 +5,7 @@ export default function mirror(name: string): string {
 
   const dot = name.lastIndexOf('.');
 
-  if (dot > -1) {
+  if (dot !== -1) {
     return `${name.substring(0, dot)}.spec${name.substring(dot)}`;
   }
 
