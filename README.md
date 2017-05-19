@@ -5,7 +5,7 @@ Jump to the spec/source complement of the current file.
 Toggle Spec will search all root-level directories within your project, ignoring `node_modules` and `bower_components`.
 Once it found a match, it will learn to prioritize its directory.
 
-![](example/run.gif)
+![](http://www.simply.sh/static/assets/run.gif)
 
 ## Usage
 
@@ -17,7 +17,7 @@ Press `Ctrl+Shift+P` (`Cmd+Shift+P` on a Mac) to open the Command Pallete and ty
 
 Bind `extension.toggleSpec` to a keybinding.
 
-![](example/bind.gif)
+![](http://www.simply.sh/static/assets/bind.gif)
 
 ## Configuration
 

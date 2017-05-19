@@ -3,6 +3,7 @@
 ## [0.2.2] - 2017-05-19
 ### Changed
 - Hidden directories are now excluded.
+
 ### Fixed
 - Fixed partial matching the wrong file.
 
