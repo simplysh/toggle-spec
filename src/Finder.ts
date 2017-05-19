@@ -4,6 +4,7 @@ import * as path from 'path';
 import * as debounce from 'lodash.debounce';
 
 const isDirectory = base => file => fs.lstatSync(path.join(base, file)).isDirectory();
+const isNotHidden = file => !file.startsWith('.');
 const excludeFrom = list => file => list.indexOf(file) === -1;
 
 export default class Finder extends vscode.Disposable {
@@ -51,6 +52,7 @@ export default class Finder extends vscode.Disposable {
     const root = vscode.workspace.rootPath;
 
     this.includes = fs.readdirSync(vscode.workspace.rootPath)
+      .filter(isNotHidden)
       .filter(isDirectory(root))
       .filter(excludeFrom(['node_modules', 'bower_components']))
       .filter(excludeFrom(exclude || []));

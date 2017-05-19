@@ -23,15 +23,19 @@ export default async function (paths: string[], onSuccess: any) {
   }
 
   for (const basepath of paths) {
-    const files = await workspace.findFiles(`${basepath}/**/${targetName}`, '', 1);
+    const files = await workspace.findFiles(`${basepath}/**/${targetName}`, '', 5);
 
     if (files.length) {
-      const document = await workspace.openTextDocument(files[0]);
+      for (const file of files) {
+        if (path.basename(file.fsPath) !== targetName) { continue }
 
-      if (document) {
-        window.showTextDocument(document);
-        onSuccess(basepath);
-        return;
+        const document = await workspace.openTextDocument(file);
+
+        if (document) {
+          window.showTextDocument(document);
+          onSuccess(basepath);
+          return;
+        }
       }
     }
   }
