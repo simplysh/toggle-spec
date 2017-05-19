@@ -26,7 +26,7 @@ Bind `extension.toggleSpec` to a keybinding.
 To add directories to the exclude list, use the following configuration key:
 
 ```json
-"toggleSpec.excludes": [
+"toggleSpec.exclude": [
   "foo",
   "bar"
 ]

@@ -47,12 +47,12 @@ export default class Finder extends vscode.Disposable {
   }
 
   private regenerateIncludes() {
-    const { excludes } = vscode.workspace.getConfiguration('toggleSpec');
+    const { exclude } = vscode.workspace.getConfiguration('toggleSpec');
     const root = vscode.workspace.rootPath;
 
     this.includes = fs.readdirSync(vscode.workspace.rootPath)
       .filter(isDirectory(root))
       .filter(excludeFrom(['node_modules', 'bower_components']))
-      .filter(excludeFrom(excludes || []));
+      .filter(excludeFrom(exclude || []));
   }
 }

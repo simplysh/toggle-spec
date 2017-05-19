@@ -2,7 +2,7 @@
   "name": "toggle-spec",
   "displayName": "Toggle Spec",
   "description": "Toggle between your source and spec file",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "simplysh",
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
       "type": "object",
       "title": "Toggle Spec configuration",
       "properties": {
-        "toggleSpec.excludes": {
+        "toggleSpec.exclude": {
           "type": "array",
           "items": {
             "type": "string",
