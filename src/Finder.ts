@@ -4,7 +4,7 @@ import * as path from 'path';
 import * as debounce from 'lodash.debounce';
 
 const isDirectory = base => file => fs.lstatSync(path.join(base, file)).isDirectory();
-const excludeSystem = file => ['node_modules', 'bower_components'].indexOf(file) === -1;
+const excludeFrom = list => file => list.indexOf(file) === -1;
 
 export default class Finder extends vscode.Disposable {
   private watcher: vscode.FileSystemWatcher;
@@ -22,6 +22,7 @@ export default class Finder extends vscode.Disposable {
     watcher.onDidCreate(thisRegenerateIncludes);
     watcher.onDidChange(thisRegenerateIncludes);
     watcher.onDidDelete(thisRegenerateIncludes);
+    vscode.workspace.onDidChangeConfiguration(thisRegenerateIncludes);
 
     this.watcher = watcher;
     this.includes = [];
@@ -46,11 +47,12 @@ export default class Finder extends vscode.Disposable {
   }
 
   private regenerateIncludes() {
-    const excludes = vscode.workspace.getConfiguration('search.exclude');
+    const { excludes } = vscode.workspace.getConfiguration('toggleSpec');
     const root = vscode.workspace.rootPath;
 
     this.includes = fs.readdirSync(vscode.workspace.rootPath)
       .filter(isDirectory(root))
-      .filter(excludeSystem);
+      .filter(excludeFrom(['node_modules', 'bower_components']))
+      .filter(excludeFrom(excludes || []));
   }
 }
